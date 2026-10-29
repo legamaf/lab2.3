@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практична робота DOM</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: white;
+            color: black;
+        }
+
+        section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .red {
+            color: red;
+        }
+
+        img {
+            display: block;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Практична робота: Основи DOM</h1>
+
+    <!-- Завдання 1 -->
+    <section>
+        <h2>Завдання 1. Основи DOM</h2>
+        <h3 id="header">Привіт, світ!</h3>
+        <p>Текст заголовка виводиться в консоль браузера.</p>
+
+        <script>
+            console.log(document.getElementById("header").innerText);
+        </script>
+    </section>
+
+    <!-- Завдання 2 -->
+    <section>
+        <h2>Завдання 2. Зміна вмісту елемента</h2>
+        <p id="text">Цей текст зміниться.</p>
+        <button id="changeTextButton">Змінити текст</button>
+
+        <script>
+            document.getElementById("changeTextButton").onclick = function() {
+                document.getElementById("text").innerText = "Текст змінено!";
+            };
+        </script>
+    </section>
+
+    <!-- Завдання 3 -->
+    <section>
+        <h2>Завдання 3. Додавання елементів</h2>
+        <button id="addParagraphButton">Додати абзац</button>
+
+        <script>
+            document.getElementById("addParagraphButton").onclick = function() {
+                const newParagraph = document.createElement("p");
+                newParagraph.innerText = "Це новий абзац!";
+                document.getElementById("task3").appendChild(newParagraph);
+            };
+        </script>
+        <div id="task3"></div>
+    </section>
+
+    <!-- Завдання 4 -->
+    <section>
+        <h2>Завдання 4. Видалення елементів</h2>
+        <p>Перший абзац.</p>
+        <p>Другий абзац.</p>
+        <p>Третій абзац.</p>
+        <button id="removeLastParagraph">Видалити останній абзац</button>
+
+        <script>
+            document.getElementById("removeLastParagraph").onclick = function() {
+                const paragraphs = this.parentElement.querySelectorAll("p");
+
+                if (paragraphs.length > 0) {
+                    paragraphs[paragraphs.length - 1].remove();
+                }
+            };
+        </script>
+    </section>
+
+    <!-- Завдання 5 -->
+    <section>
+        <h2>Завдання 5. Зміна стилів</h2>
+        <p>Натисни кнопку, щоб змінити фон сторінки.</p>
+        <button id="changeBackgroundColor">Змінити фон</button>
+
+        <script>
+            document.getElementById("changeBackgroundColor").onclick = function() {
+                document.body.style.backgroundColor = "lightblue";
+            };
+        </script>
+    </section>
+
+    <!-- Завдання 6 -->
+    <section>
+        <h2>Завдання 6. Обробка подій</h2>
+        <p id="hoverText">Наведи курсор сюди, щоб змінити колір.</p>
+
+        <script>
+            const hoverText = document.getElementById("hoverText");
+
+            hoverText.onmouseover = function() {
+                this.style.color = "red";
+            };
+
+            hoverText.onmouseout = function() {
+                this.style.color = "black";
+            };
+        </script>
+    </section>
+
+    <!-- Завдання 7 -->
+    <section>
+        <h2>Завдання 7. Валідація даних форми</h2>
+
+        <form id="emailForm">
+            <input
+                type="email"
+                id="email"
+                placeholder="Електронна пошта"
+                required
+            >
+            <button type="submit">Надіслати</button>
+        </form>
+
+        <script>
+            document.getElementById("emailForm").onsubmit = function(event) {
+                const email = document.getElementById("email").value;
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailPattern.test(email)) {
+                    alert("Невірний формат електронної пошти!");
+                    event.preventDefault();
+                } else {
+                    event.preventDefault();
+                    alert("Електронну пошту введено правильно!");
+                }
+            };
+        </script>
+    </section>
+
+    <!-- Завдання 8 -->
+    <section>
+        <h2>Завдання 8. Зміна атрибутів</h2>
+
+        <img
+            id="image"
+            src="https://placehold.co/200x120/cccccc/000000?text=Image+1"
+            alt="Перше зображення"
+        >
+
+        <button id="changeImage">Змінити зображення</button>
+
+        <script>
+            document.getElementById("changeImage").onclick = function() {
+                const image = document.getElementById("image");
+
+                image.src = "https://placehold.co/200x120/87ceeb/000000?text=Image+2";
+                image.alt = "Друге зображення";
+            };
+        </script>
+    </section>
+
+    <!-- Завдання 9 -->
+    <section>
+        <h2>Завдання 9. Використання класів</h2>
+
+        <p id="styledText">Цей текст стане червоним.</p>
+        <button id="addClassButton">Додати клас</button>
+
+        <script>
+            document.getElementById("addClassButton").onclick = function() {
+                document.getElementById("styledText").classList.add("red");
+            };
+        </script>
+    </section>
+
+</body>
+</html>
